@@ -1,0 +1,16 @@
+{
+    "name": "RESUME",
+    "version": "1.0.0",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "build": "node scripts/build.mjs",
+        "preview": "npx serve dist"
+    },
+    "dependencies": {
+        "markdown-it": "^14.1.0"
+    },
+    "devDependencies": {
+        "serve": "^14.2.4"
+    }
+}
