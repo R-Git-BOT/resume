@@ -13,6 +13,22 @@ const md = new MarkdownIt({
   typographer: true
 });
 
+function escapeHtml(value) {
+  return value
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;");
+}
+
+function slugify(value) {
+  return value
+    .trim()
+    .toLowerCase()
+    .replace(/[^\p{Letter}\p{Number}]+/gu, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
 async function exists(filePath) {
   try {
     await fs.access(filePath);
@@ -23,7 +39,63 @@ async function exists(filePath) {
 }
 
 const markdown = await fs.readFile(srcPath, "utf8");
-const contentHtml = md.render(markdown);
+const tokens = md.parse(markdown, {});
+const headings = [];
+const slugCounts = new Map();
+
+for (let index = 0; index < tokens.length; index += 1) {
+  const token = tokens[index];
+
+  if (token.type !== "heading_open") {
+    continue;
+  }
+
+  const inlineToken = tokens[index + 1];
+  const text = inlineToken?.content ?? "";
+  const level = Number(token.tag.slice(1));
+
+  if (!text || (level === 1 && text === "職務経歴書")) {
+    continue;
+  }
+
+  const baseSlug = slugify(text) || `section-${headings.length + 1}`;
+  const seenCount = slugCounts.get(baseSlug) ?? 0;
+  slugCounts.set(baseSlug, seenCount + 1);
+  const id = seenCount === 0 ? baseSlug : `${baseSlug}-${seenCount + 1}`;
+
+  token.attrSet("id", id);
+
+  if (text !== "基本情報" && (level === 1 || level === 2)) {
+    headings.push({ id, level, text });
+  }
+}
+
+function buildTocHtml(items) {
+  if (items.length === 0) {
+    return "";
+  }
+
+  const links = items
+    .map(
+      (item) =>
+        `<li class="toc__item toc__item--level-${item.level}"><a href="#${item.id}">${escapeHtml(item.text)}</a></li>`
+    )
+    .join("\n");
+
+  return `<nav class="toc" aria-labelledby="toc-title">
+  <h2 id="toc-title" class="toc__title">目次</h2>
+  <ol class="toc__list">
+${links}
+  </ol>
+</nav>
+`;
+}
+
+const tocHtml = buildTocHtml(headings);
+const contentHtml = md.renderer.render(tokens, md.options, {});
+const renderedHtml = tocHtml
+  ? contentHtml.replace(/(<h2 id="基本情報">基本情報<\/h2>[\s\S]*?<\/table>)/, `$1\n${tocHtml}`)
+  : contentHtml;
 
 const html = `<!doctype html>
 <html lang="ja">
@@ -37,7 +109,7 @@ const html = `<!doctype html>
 <body>
   <main class="page">
     <article class="resume">
-      ${contentHtml}
+      ${renderedHtml}
     </article>
   </main>
 </body>

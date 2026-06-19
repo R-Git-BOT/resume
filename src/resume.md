@@ -5,10 +5,10 @@
 | 項目 | 内容 |
 |---|---|
 | 氏名 | 須藤 聡 |
-| 職種 | サーバーサイドエンジニア / バックエンドエンジニア / Unityエンジニア |
+| 職種 | サーバーサイドエンジニア / Unityエンジニア / フロントエンドエンジニア|
 | 実務経験 | 約4年 |
 | 主な経験領域 | Webアプリケーション開発、ゲームバックエンド開発、業務支援アプリケーション開発、API設計・実装、DB設計・実装、リアルタイムサーバー開発、Unityアプリケーション開発 |
-| 希望職種 | バックエンドエンジニア / サーバーサイドエンジニア |
+| 希望職種 | サーバーサイドエンジニア |
 
 ---
 
@@ -57,13 +57,13 @@ Webアプリケーション開発では、PHP / Laravel を用いたバックエ
 | フレームワーク | Laravel, Bootstrap, React, jQuery |
 | ゲーム・リアルタイム通信 | MagicOnion, NATS, LogicLooper, Unity |
 | VR / XR | Unity, MRTK |
-| アーキテクチャ | MVVM |
+| アーキテクチャ | MVC, MVVM |
 | DB | MySQL, PostgreSQL |
 | インフラ・環境 | Linux, Nginx, Docker |
 | CI/CD・開発支援 | Jenkins |
 | バージョン管理 | Git, SourceTree |
 | 外部連携 | Azure AD, Shopify API, GraphQL |
-| AI開発支援 | Codex, GitHub Copilot |
+| AI開発支援 | Codex, Claude Code |
 | その他 | API設計, DB設計, 詳細設計, 設計書レビュー, ログ調査, 結合テスト |
 
 ---
