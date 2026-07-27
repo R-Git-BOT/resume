@@ -176,16 +176,13 @@ table + hr {
 
 .toc__item {
   margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
   color: rgba(255, 255, 255, 0.7);
 }
 
 .toc__item--level-1 {
   font-weight: 700;
-}
-
-.toc__item--level-2 {
-  font-size: 12px;
-  line-height: 1.33;
 }
 
 .toc a {
