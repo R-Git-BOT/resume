@@ -2,6 +2,7 @@
 
 Markdownの職務経歴書をHTMLに変換し、Cloudflare Pagesで公開する静的サイトです。
 
+https://resume-9fn.pages.dev/ ← ここに公開されてる
 
 ## packgae.jsonの説明兼メモ書き
 
