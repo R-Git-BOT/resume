@@ -195,6 +195,85 @@ table + hr {
   text-decoration: underline;
 }
 
+.project-links {
+  margin: 0 0 32px;
+}
+
+.project-card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin: 0 0 32px;
+}
+
+.project-card {
+  display: flex;
+  min-height: 100%;
+  padding: 16px;
+  color: #ffffff;
+  text-decoration: none;
+  flex-direction: column;
+  background: #212121;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 4px;
+}
+
+.project-card:hover {
+  opacity: 1;
+  border-color: rgba(0, 185, 0, 0.7);
+}
+
+.project-card__label {
+  margin-bottom: 8px;
+  color: #00b900;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.33;
+}
+
+.project-card__title {
+  margin: 0 0 12px;
+  padding: 0;
+  color: #ffffff;
+  font-size: 16px;
+  line-height: 1.35;
+  border: 0;
+}
+
+.project-card__meta,
+.project-card__summary {
+  margin: 0 0 12px;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.project-card__meta {
+  font-size: 12px;
+  line-height: 1.33;
+}
+
+.project-card__summary {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.project-card__action {
+  margin-top: auto;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.back-link {
+  margin-bottom: 24px;
+}
+
+.back-link a {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+}
+
 ul,
 ol {
   margin: 0 0 24px;
@@ -234,6 +313,12 @@ a {
 
 a:hover {
   opacity: 0.8;
+}
+
+@media (max-width: 1023px) {
+  .project-card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 599px) {
@@ -309,6 +394,11 @@ a:hover {
     gap: 8px;
   }
 
+  .project-card-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
   h1 {
     margin-bottom: 24px;
     font-size: 18px;
@@ -359,7 +449,10 @@ a:hover {
   h4,
   p,
   li,
-  strong {
+  strong,
+  .project-card,
+  .project-card__title,
+  .project-card__action {
     color: #111111;
   }
 
@@ -370,5 +463,16 @@ a:hover {
 
   h4 {
     border-color: #222222;
+  }
+
+  .project-card {
+    background: #ffffff;
+    border-color: #222222;
+  }
+
+  .project-card__label,
+  .project-card__meta,
+  .project-card__summary {
+    color: #333333;
   }
 }
